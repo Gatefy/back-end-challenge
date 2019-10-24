@@ -51,6 +51,12 @@ class User extends Authenticatable
         return $token;
     }
 
+    public function revokeToken() {
+        return  $this->forceFill([
+            'api_token' => null,
+        ])->save();
+    }
+
     /**
      * @param string $token
      * @return mixed
