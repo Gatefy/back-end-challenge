@@ -27,7 +27,7 @@ Route::group(['as'=>'public.'], function () {
 
 });
 
-Route::group(['as'=>'private.'], function () {
+Route::group(['as'=>'private.', 'middleware' => ['auth']], function () {
 
     Route::get('dashboard', function () {
         return view('private.dashboard');

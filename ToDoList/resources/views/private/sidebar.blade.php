@@ -14,7 +14,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item @if($routeLink === 'dashboard') active @endif ">
-        <a class="nav-link" href="/dashboard">
+        <a class="nav-link" href="/dashboard?access_token={{$access_token}}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span>
         </a>
@@ -25,7 +25,7 @@
 
     <!-- Nav Item - Tarefas -->
     <li class="nav-item @if($routeLink === 'todo') active @endif ">
-        <a class="nav-link" href="/todo">
+        <a class="nav-link" href="/todo?access_token={{$access_token}}">
             <i class="far fa-fw fa-list-alt"></i>
             <span>Tarefas</span>
         </a>
