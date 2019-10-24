@@ -20,8 +20,13 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.11.2",
+        "bootstrap": "^4.3.1",
         "del": "^5.1.0",
         "gulp": "^4.0.2",
-        "gulp-shell": "^0.7.1"
+        "gulp-shell": "^0.7.1",
+        "jquery": "^3.4.1",
+        "jquery.easing": "^1.4.1",
+        "popper.js": "^1.16.0"
     }
 }

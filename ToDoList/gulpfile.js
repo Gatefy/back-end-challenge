@@ -32,7 +32,10 @@ function clean() {
 function serve() {
     return gulp
         .src('.')
-        .pipe(shell(['php artisan serve']));
+        .pipe(shell([
+            'npm run dev',
+            'php artisan serve'
+        ]));
 }
 
 function seed() {
