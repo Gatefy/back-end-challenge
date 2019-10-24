@@ -12,7 +12,7 @@
             <div class="modal-body">Após sair a sessão atual será finalizada.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                <a class="btn btn-primary" href="/login">Logout</a>
+                <a class="btn btn-primary" id="urs-logout" href="{{route('public.login')}}">Logout</a>
             </div>
         </div>
     </div>

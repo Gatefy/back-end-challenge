@@ -21,7 +21,7 @@ class UserTableSeeder extends Seeder
                 ];
             }
 
-            \App\User::insert($users);
+            \App\Http\Models\User::insert($users);
         }
     }
 }

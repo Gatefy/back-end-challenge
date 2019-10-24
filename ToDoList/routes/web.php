@@ -18,11 +18,11 @@ Route::group(['as'=>'public.'], function () {
     });
 
     Route::get('login', function () {
-        return view('login');
+        return view('public.login');
     })->name('login');
 
     Route::get('register', function () {
-        return view('register');
+        return view('public.register');
     })->name('register');
 
 });
@@ -30,18 +30,19 @@ Route::group(['as'=>'public.'], function () {
 Route::group(['as'=>'private.'], function () {
 
     Route::get('dashboard', function () {
-        return view('dashboard');
+        return view('private.dashboard');
     })->name('dashboard');
 
     Route::get('todo', function () {
-        return view('todo.listar');
+        return view('private.todo.listar');
     })->name('todo');
 
     Route::get('todo/add', function () {
-        return view('dashboard');
+        return view('private.dashboard');
     })->name('todo.add');
 
     Route::get('todo/rm', function () {
-        return view('dashboard');
+        return view('private.dashboard');
     })->name('todo.rm');
+
 });

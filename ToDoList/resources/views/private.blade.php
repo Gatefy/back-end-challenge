@@ -3,7 +3,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-    @include('sidebar')
+    @include('private.sidebar')
 
     <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -24,7 +24,7 @@
 
             </div>
             <!-- End of Main Content -->
-            @include('footer')
+            @include('private.footer')
 
 
         </div>
@@ -38,5 +38,5 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    @include('modais.logout')
+    @include('private.modais.logout')
 @stop

@@ -24,7 +24,6 @@
 </head>
 <body id="page-top" @if($routeGroup === 'public') class="bg-gradient-primary" @endif >
 
-{{--{{ $routeName = \Request::route()->getName() }}--}}
 @if($routeGroup === 'public')
     @yield('public')
 @elseif($routeGroup === 'private')
@@ -35,5 +34,12 @@
 <script src="/js/app.js"></script>
 
 @yield('extras_scripts')
+
+@if($routeGroup === 'public')
+    <script src="/js/public.js"></script>
+@elseif($routeGroup === 'private')
+    <script src="/js/private.js"></script>
+@endif
+
 </body>
 </html>

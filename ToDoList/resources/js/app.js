@@ -7,9 +7,3 @@ require('../../node_modules/bootstrap/dist/js/bootstrap.bundle');
 
 require('./jquery.validationEngine-pt_BR');
 require('./jquery.validationEngine');
-
-$(document).ready(function () {
-    if ($(".sidebar").length) {
-        require('./private');
-    }
-});
