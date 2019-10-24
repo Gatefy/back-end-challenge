@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class UserTableSeeder extends Seeder
 {
@@ -18,6 +19,7 @@ class UserTableSeeder extends Seeder
                     'name' => 'user' . $i,
                     'email' => 'user' . $i . '@todo.list',
                     'password' => Hash::make('user' . $i),
+                    'created_at' => Carbon::now(),
                 ];
             }
 
