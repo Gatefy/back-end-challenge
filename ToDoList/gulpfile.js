@@ -35,6 +35,12 @@ function serve() {
         .pipe(shell(['php artisan serve']));
 }
 
+function seed() {
+    return gulp
+        .src('.')
+        .pipe(shell(['php artisan db:seed --class=UserTableSeeder']));
+}
+
 // Define complex tasks
 const reinstall = gulp.series(clean, install);
 
@@ -43,4 +49,5 @@ exports.help = help;
 exports.install = install;
 exports.clean = clean;
 exports.serve = serve;
+exports.seed = seed;
 exports.reinstall = reinstall;
