@@ -25,6 +25,9 @@ function install() {
 function clean() {
     return del([
         './database/database.sqlite',
+        './public/css',
+        './public/js',
+        './public/fonts',
         './vendor'
     ]);
 }
