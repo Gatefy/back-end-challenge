@@ -19,7 +19,7 @@ class CreateToDoTaskTable extends Migration
             $table->unsignedBigInteger('user_id')->index();
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('name');
-            $table->enum('status', ToDoTask::getAcceptedStatus())->default('todo')->index();
+            $table->enum('status', ToDoTask::getAcceptedStatus())->default(ToDoTask::getDefaultStatus())->index();
             $table->timestamps();
 
             $table->index(['user_id', 'status']);
