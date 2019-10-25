@@ -22,11 +22,7 @@ $('#urs-login').click(function () {
         $.ajax({
             type: 'POST',
             url: '/api/login',
-            data: {
-                email: $('#inputEmail').val(),
-                password: $('#inputPassword').val(),
-                remember_me: ($('#checkRememberMe')[0].checked ? 1 : 0)
-            },
+            data: ajax_data,
             dataType: 'json'
         })
             .done(function (responseJSON) {
