@@ -11,3 +11,7 @@ require('../jQuery-Validation-Engine-3.0.0/js/jquery.validationEngine');
 window.__defaul_validationEngine_options = {
     promptPosition: 'topLeft'
 };
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+});
