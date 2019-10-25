@@ -19,4 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::get('logout', 'API\AuthController@logout');
 
     Route::get('/user', 'API\UserController@get');
+
+    Route::get('/task', 'API\TaskController@get');
+    Route::post('/task', 'API\TaskController@save');
 });

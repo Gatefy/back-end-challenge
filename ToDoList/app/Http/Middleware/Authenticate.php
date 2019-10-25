@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\View;
 
 class Authenticate extends Middleware
 {
+    public static $access_token = null;
+
     /**
      * Get the path the user should be redirected to when they are not authenticated.
      *
@@ -44,6 +46,7 @@ class Authenticate extends Middleware
         }
 
         if (Auth::check()) {
+            self::$access_token = $token;
             View::share('access_token', $token);
             return $this->auth->shouldUse(null);
         }
