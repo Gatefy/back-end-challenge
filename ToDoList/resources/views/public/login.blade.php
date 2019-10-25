@@ -21,10 +21,10 @@
             </div>
             <a id="urs-login" href="{{route('public.login')}}" class="btn btn-primary btn-user btn-block">Login</a>
         </form>
-        <hr>
-        <div class="text-center">
-            <a class="small" href="{{route('public.register')}}">Create an Account!</a>
-        </div>
+        {{-- <hr>--}}
+        {{-- <div class="text-center">--}}
+        {{--     <a class="small" href="{{route('public.register')}}">Create an Account!</a>--}}
+        {{-- </div>--}}
     </div>
 @stop
 
