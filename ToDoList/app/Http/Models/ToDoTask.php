@@ -2,6 +2,7 @@
 
 namespace App\Http\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class ToDoTask extends Model
@@ -9,7 +10,7 @@ class ToDoTask extends Model
     protected $table = 'todo_task';
 
     protected static $acceptedStatus = [
-        'todo',
+        'todo', // default
         'done',
         'deleted',
     ];
@@ -17,7 +18,7 @@ class ToDoTask extends Model
 
     /**
      * @param int $id
-     * @return mixed
+     * @return Builder
      */
     public function getByUserId(int $id)
     {

@@ -22,4 +22,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/task', 'API\TaskController@get');
     Route::post('/task', 'API\TaskController@save');
+    Route::delete('/task', 'API\TaskController@delete');
+    Route::put('/task', 'API\TaskController@update');
 });
