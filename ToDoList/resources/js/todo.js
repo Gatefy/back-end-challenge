@@ -112,8 +112,30 @@ $(document).ready(function () {
                 })
                 .fail(default_fail_action);
             return false;
+        },
+        update: function (task_id) {
+            let task_name = $('[task=' + task_id + '] [name=name]').val();
+            api_request({
+                id: task_id,
+                name: task_name,
+                status: ($('[task=' + task_id + '] [name=status]')[0].checked ? 'done' : 'todo'),
+                access_token: access_token
+            }, 'PUT')
+                .done(function (responseJSON) {
+                    success_msg('Task "' + task_name + '" saved.');
+                    // load_info();
+                })
+                .fail(default_fail_action);
+
+            return false;
         }
     };
+
+    $(document).on('change', '#todo-table [task] input', function () {
+        let task_id = $(this).parents('[task]').attr('task');
+        window.todo.update(task_id);
+        return true;
+    });
 
     $(document).on('click', '.pagination a.page-link[rel="prev"]', function () {
         curr_page--;
