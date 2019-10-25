@@ -1,9 +1,20 @@
 @import "sb-admin-2.scss";
-
 @import "../../node_modules/@fortawesome/fontawesome-free/css/all.css";
-
 @import "../jQuery-Validation-Engine-3.0.0/less/validationEngine.jquery.scss";
 
 .error {
     min-width: 13rem;
+}
+
+.table .thead-blue th {
+    color: $white;
+    background-color: $blue;
+    border-color: $blue;
+}
+
+@media print {
+    .table .thead-blue th {
+        color: inherit;
+        border-color: $gray-200;
+    }
 }

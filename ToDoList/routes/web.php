@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['as'=>'public.'], function () {
+Route::group(['as' => 'public.'], function () {
 
     Route::get('/', function () {
         return redirect('login');
@@ -27,7 +27,7 @@ Route::group(['as'=>'public.'], function () {
 
 });
 
-Route::group(['as'=>'private.', 'middleware' => ['auth']], function () {
+Route::group(['as' => 'private.', 'middleware' => ['auth']], function () {
 
     Route::get('dashboard', function () {
         return view('private.dashboard');
@@ -36,6 +36,9 @@ Route::group(['as'=>'private.', 'middleware' => ['auth']], function () {
     Route::get('todo', function () {
         return view('private.todo.listar');
     })->name('todo');
+
+    Route::post('todo/table', 'WEB\ToDoTable@get')
+        ->name('todo.table');
 
     Route::get('todo/add', function () {
         return view('private.dashboard');

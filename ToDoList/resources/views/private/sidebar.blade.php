@@ -27,7 +27,7 @@
     <li class="nav-item @if($routeLink === 'todo') active @endif ">
         <a class="nav-link" href="/todo?access_token={{$access_token}}">
             <i class="far fa-fw fa-list-alt"></i>
-            <span>Tarefas</span>
+            <span>Tasks</span>
         </a>
     </li>
 

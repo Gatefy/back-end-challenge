@@ -6,6 +6,7 @@ $('#frm-login').validationEngine(window.__defaul_validationEngine_options);
 
 if (localStorage.getItem('remember_me') == 1) {
     $('#inputEmail').val(localStorage.getItem('email'));
+    $('#checkRememberMe').get(0).checked = true;
 }
 
 $('#urs-login').click(function () {

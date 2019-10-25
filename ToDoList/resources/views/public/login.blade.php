@@ -26,11 +26,8 @@
             <a class="small" href="{{route('public.register')}}">Create an Account!</a>
         </div>
     </div>
+@stop
 
-    <script type="text/html" id="frm-msg-default">
-        <div class="alert alert-danger alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <p class="my-0 frm-msg">Email or password is invalid.</p>
-        </div>
-    </script>
+@section('extras_scripts')
+    @include('form-message')
 @stop
