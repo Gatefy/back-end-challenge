@@ -7,7 +7,8 @@ $(document).ready(function () {
     function error_msg(msg = null) {
         let div_msg = $($('#frm-msg-default').html());
         if (msg) {
-            div_msg.find('.frm-msg').html(msg);
+            div_msg.find('.frm-msg')
+                .html(msg);
         }
         $('#todo-table-info').prepend(div_msg);
     }
@@ -16,7 +17,8 @@ $(document).ready(function () {
         close_all_msg();
         let div_msg = $($('#frm-msg-success').html());
         if (msg) {
-            div_msg.find('.frm-msg').html(msg);
+            div_msg.find('.frm-msg')
+                .html(msg);
         }
         $('#todo-table-info').prepend(div_msg);
     }
@@ -63,17 +65,19 @@ $(document).ready(function () {
             .fail(function (data) {
                 console.log(data);
                 let msg = $($('#frm-msg-default').html());
-                msg.find('.frm-msg').html('Session expired.');
+                msg.find('.frm-msg')
+                    .html('Session expired.');
                 $('#todo-table-info').prepend(msg);
             });
     };
 
+    let info_uri = 'tasks';
     let load_info = function (perpage = 10) {
         api_request({
             page: curr_page,
             per_page: perpage,
             access_token: access_token
-        }, 'GET', false)
+        }, 'GET', false, info_uri)
             .done(load_table)
             .fail(default_fail_action);
     };
@@ -128,6 +132,39 @@ $(document).ready(function () {
                 .fail(default_fail_action);
 
             return false;
+        },
+        filterOrDelete: function () {
+            let action = $('#dropdownAction').val();
+            let filter = $('#dropdownFilter').val();
+
+
+            info_uri = 'tasks';
+            if (filter.length) {
+                info_uri += '/' + filter;
+            }
+
+            if (action == 'delete') {
+                let filter_name = $('.dropdown-item[value="' + filter + '"]').html();
+                let confirm_msg = 'Are you sure to delete "' + filter_name + '" tasks?';
+                if (confirm(confirm_msg)) {
+                    api_request({
+                        access_token: access_token
+                    }, 'DELETE', true, info_uri)
+                        .done(function (responseJSON) {
+                            info_uri = 'tasks';
+                            success_msg('"' + filter_name + '" tasks deleted.');
+                            load_info();
+                        })
+                        .fail(default_fail_action);
+                } else {
+                    info_uri = 'tasks';
+                }
+
+                return false;
+            }
+
+            load_info();
+            return false;
         }
     };
 
@@ -147,5 +184,16 @@ $(document).ready(function () {
         curr_page++;
         load_info();
         return false;
+    });
+
+    $('.dropdown .dropdown-item').click(function () {
+        let self = $(this);
+        let dad = self.parents('.dropdown');
+        dad.find('.dropdown-item')
+            .removeClass('active');
+        self.addClass('active');
+        dad.find('.dropdown-toggle')
+            .val(self.val())
+            .html(self.html());
     });
 });
