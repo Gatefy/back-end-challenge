@@ -7,6 +7,7 @@ use App\Http\Middleware\Authenticate;
 use App\Http\Models\ToDoTask;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
 {
@@ -21,7 +22,7 @@ class TaskController extends Controller
      * @param ToDoTask $taskList
      * @return mixed
      */
-    public function get(Request $request, ToDoTask $taskList)
+    public function get($status = '', Request $request, ToDoTask $taskList)
     {
         $request->validate([
             'per_page' => 'int',
@@ -30,9 +31,13 @@ class TaskController extends Controller
 
         $user = $request->user();
         $per_page = (int)$request->get('per_page', 15);
-        return $taskList
-            ->getByUserId($user->id)
-            ->where('status', '<>', 'deleted')
+        $taskObject = $taskList->getByUserId($user->id);
+        if ($status) {
+            $taskObject->where('status', '=', $status);
+        } else {
+            $taskObject->where('status', '<>', 'deleted');
+        }
+        return $taskObject
             ->simplePaginate($per_page)
             ->appends(['access_token' => Authenticate::$access_token])
             ->appends(['per_page' => $per_page]);
@@ -77,6 +82,43 @@ class TaskController extends Controller
             if ($task->save()) {
                 return $this->response(202);
             }
+        }
+        return $this->response(304);
+    }
+
+    public function deleteByStatus($status, Request $request, ToDoTask $taskList)
+    {
+        $validator = Validator::make([
+            'status' => $status,
+        ], [
+            'status' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->response(400);
+        }
+
+        $status = $taskList->getStatus($status);
+        $user = $request->user();
+        $updated = $taskList->getByUserId($user->id)
+            ->where('status', '=', $status)
+            ->update(['status' => 'deleted']);
+
+        if ($updated) {
+            return $this->response(202);
+        }
+        return $this->response(304);
+    }
+
+    public function deleteAll(Request $request, ToDoTask $taskList)
+    {
+        $user = $request->user();
+        $updated = $taskList->getByUserId($user->id)
+            ->where('status', '<>', 'deleted')
+            ->update(['status' => 'deleted']);
+
+        if ($updated) {
+            return $this->response(202);
         }
         return $this->response(304);
     }

@@ -207,6 +207,186 @@
 							"script": {
 								"id": "df9be135-228b-41a3-a503-583d487c360a",
 								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{todo_bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"asdsssssssssddd\",\n    \"status\": \"todo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/task",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "df9be135-228b-41a3-a503-583d487c360a",
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{todo_bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/task",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "api/task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "df9be135-228b-41a3-a503-583d487c360a",
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{todo_bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 4,\n    \"name\": \"asdsssssssssddd\",\n    \"status\": \"todo\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/task",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"task"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "api/tasks/{status}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "df9be135-228b-41a3-a503-583d487c360a",
+								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
 									"});"
@@ -248,13 +428,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/task?page=1&per_page=6",
+							"raw": "{{base_url}}/api/tasks/done?page=1&per_page=6",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
-								"task"
+								"tasks",
+								"done"
 							],
 							"query": [
 								{
@@ -266,12 +447,13 @@
 									"value": "6"
 								}
 							]
-						}
+						},
+						"description": "Get tasks with a specift status."
 					},
 					"response": []
 				},
 				{
-					"name": "api/task",
+					"name": "api/tasks",
 					"event": [
 						{
 							"listen": "test",
@@ -280,6 +462,78 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {",
 									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{todo_bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tasks?page=1&per_page=6",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "6"
+								}
+							]
+						},
+						"description": "Get all (no deleted) tasks."
+					},
+					"response": []
+				},
+				{
+					"name": "api/tasks/{status}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "df9be135-228b-41a3-a503-583d487c360a",
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -297,7 +551,7 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "DELETE",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -308,7 +562,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"asd\",\n    \"status\": \"todo\"\n}",
+							"raw": "{}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -316,15 +570,76 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/task",
+							"raw": "{{base_url}}/api/tasks/done",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
-								"task"
+								"tasks",
+								"done"
 							]
+						},
+						"description": "Delete tasks with a specific status."
+					},
+					"response": []
+				},
+				{
+					"name": "api/tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "df9be135-228b-41a3-a503-583d487c360a",
+								"exec": [
+									"pm.test(\"Status code is 202\", function () {",
+									"    pm.response.to.have.status(202);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{todo_bearer}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/tasks",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"tasks"
+							]
+						},
+						"description": "Delete all the tasks."
 					},
 					"response": []
 				}
