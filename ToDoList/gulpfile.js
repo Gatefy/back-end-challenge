@@ -18,6 +18,7 @@ function install() {
         .pipe(shell([
             'composer install',
             'touch database/database.sqlite',
+            'cp -n .env.example .env',
             'php artisan migrate'
         ]));
 }
