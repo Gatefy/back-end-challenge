@@ -1,20 +1,15 @@
 // Logout the user
 $("#urs-logout").click(function () {
-    console.log("not implemented");
-
-    axios.get('/api/logout', {
-        params: {
-            ID: 12345
-        }
+    $.ajax({
+        type: 'GET',
+        url: '/api/logout',
+        data: {
+            access_token: access_token
+        },
+        dataType: 'text'
     })
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        })
-        .finally(function () {
-            // always executed
+        .done(function () {
+            window.location.href = '/login';
         });
     return false;
 });
