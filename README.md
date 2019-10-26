@@ -1,5 +1,12 @@
 # To Do Tasks
 
+### Pré-requisitos
+* PHP 7.2+
+* NPM 6.11+
+
+Este sistema foi testado e desenvolvido em Linux,
+alguns comandos predefinidos podem não funcionar no Windows
+
 ### Instalação
 Na pasta *ToDoList* executar os seguintes comendos no terminal:
 ```shell script

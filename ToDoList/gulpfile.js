@@ -16,9 +16,9 @@ function install() {
     return gulp
         .src('.')
         .pipe(shell([
-            'composer install',
-            'touch database/database.sqlite',
-            'cp -n .env.example .env',
+            'if [ $(which composer | wc -c) -ne 0 ]; then composer install; else if [ ! -f ./composer.phar ]; then wget --output-document="composer.phar" "https://getcomposer.org/download/1.9.0/composer.phar"; chmod +x composer.phar; fi; ./composer.phar install; fi',
+            'if [ ! -f database/database.sqlite ]; then touch database/database.sqlite; fi',
+            'if [ ! -f .env ]; then cp -n .env.example .env; fi',
             'php artisan migrate'
         ]));
 }
