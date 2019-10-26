@@ -8,7 +8,7 @@ Este sistema foi testado e desenvolvido em Linux,
 alguns comandos predefinidos podem não funcionar no Windows
 
 ### Instalação
-Na pasta *ToDoList* executar os seguintes comendos no terminal:
+Na pasta *ToDoList* executar os seguintes comandos no terminal:
 ```shell script
 npm install;
 gulp install;
@@ -25,7 +25,7 @@ Os 10 usuários criados terão o seguinte padrão:
 
 Após isto, as necessidades do sistema já estarão completas.
 
-Lembre-se de copiar o ``.env.example`` para ``.env`` e ajusta-lo às suas necessidades.
+Lembre-se de ajustar o arquivo ``.env`` de acordo com as suas necessidades.
 
 ### Execução
 Para executar o serviço *WEB*, basta executar: ``gulp serve;``.
