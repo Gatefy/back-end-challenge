@@ -72,7 +72,5 @@
     @include('private.modais.add-task')
     @include('form-message')
 
-    <script type="application/javascript">let access_token = "{{$access_token}}";</script>
-    <script type="text/html" id="csrf"> {{csrf_field()}} </script>
     <script src="/js/todo.js"></script>
 @stop

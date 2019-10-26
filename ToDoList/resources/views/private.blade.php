@@ -11,7 +11,7 @@
             <!-- Main Content -->
             <div id="content" class="pt-3">
 
-            {{--            @include('topbar')--}}
+            {{-- @include('topbar')--}}
 
             <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -39,4 +39,6 @@
     </a>
 
     @include('private.modais.logout')
+    <script type="application/javascript">let access_token = "{{$access_token}}";</script>
+    <script type="text/html" id="csrf"> {{csrf_field()}} </script>
 @stop
